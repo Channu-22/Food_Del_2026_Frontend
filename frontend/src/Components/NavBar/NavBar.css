@@ -1,0 +1,7 @@
+.navbar button {
+  border: 1px solid tomato;
+}
+.navbar {
+  width: 80%;
+  margin: auto;
+}

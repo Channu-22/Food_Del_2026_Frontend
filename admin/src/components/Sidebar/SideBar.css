@@ -1,0 +1,10 @@
+/* @media screen and (max-width: 900px) {
+  .sidebar p {
+    display: none;
+  }
+} */
+
+.sidebar-option.active{
+  background-color: #fff0ed;
+  border-color: tomato;
+}

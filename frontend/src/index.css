@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    min-height: 100vh;
+    font-family: outfit;
+}
+
+a{
+    color: inherit;
+}
+
+/* .app{
+    width: 80%;
+    margin: auto;
+} */

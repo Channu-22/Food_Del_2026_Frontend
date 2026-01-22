@@ -1,0 +1,19 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+body{
+    min-height: 100vh;
+    font-family: outfit;
+    background-color: #fcfcfc;
+}
+
+.app-content{
+    display: flex;
+}
+
+.flex_col{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}

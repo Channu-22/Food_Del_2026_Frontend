@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+body{
+    min-height: 100vh;
+    font-family: outfit;
+    background-color: #fcfcfc;
+}
+
+hr{
+    border: none;
+    height: 1px;
+    background-color: #a9a9a9;
+}
