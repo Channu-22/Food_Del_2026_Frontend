@@ -22,13 +22,19 @@ function Order({ url }) {
   }
 
   async function statusHandler(event, orderId) {
-    console.log(event,orderId)
-    const response = await axios.post(url + "/api/order/status", {
-      orderId,
-      status: event.target.value,
-    });
-    if (response.data.success) {
-      await fetchAllOrders();
+    // console.log(event,orderId)
+    try {
+      const response = await axios.post(url + "/api/order/status", {
+        orderId,
+        status: event.target.value,
+      });
+      if (response.data.success) {
+        await fetchAllOrders();
+        toast.success(response.data.message);
+      }
+    } catch (err) {
+      console.log(err)
+      toast.error(response.data.message);
     }
   }
 
@@ -141,7 +147,11 @@ function Order({ url }) {
               </div>
 
               {/* Status Dropdown */}
-              <select onChange={(e) => statusHandler(e,order._id)} value={order.status} className="px-4 py-3 rounded-md border border-[#e0e0e0] bg-[#ffe1e1] text-[#454545] text-[14px] font-medium cursor-pointer hover:border-[#ff6347] focus:outline-none focus:ring-2 focus:ring-[#ff6347] focus:ring-opacity-20 transition-all duration-200">
+              <select
+                onChange={(e) => statusHandler(e, order._id)}
+                value={order.status}
+                className="px-4 py-3 rounded-md border border-[#e0e0e0] bg-[#ffe1e1] text-[#454545] text-[14px] font-medium cursor-pointer hover:border-[#ff6347] focus:outline-none focus:ring-2 focus:ring-[#ff6347] focus:ring-opacity-20 transition-all duration-200"
+              >
                 <option value="Food Processing">Food Processing</option>
                 <option value="Out for Delivery">Out for Delivery</option>
                 <option value="Delivered">Delivered</option>
