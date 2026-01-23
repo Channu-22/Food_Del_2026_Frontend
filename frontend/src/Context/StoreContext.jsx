@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 
 function StoreContextProvider({ children }) {
   const [cartItems, setCartItems] = useState({});
-  const url = "http://localhost:4000";
+  const url = "https://food-del-2026-backend.onrender.com";
   const [token, setToken] = useState("");
   const [food_list, setFood_list] = useState([]);
 
@@ -23,8 +23,12 @@ function StoreContextProvider({ children }) {
         [itemId]: prev[itemId] + 1,
       }));
     }
-    if(token){
-      const response = await axios.post(url+"/api/cart/add",{itemId},{headers:{token}})
+    if (token) {
+      const response = await axios.post(
+        url + "/api/cart/add",
+        { itemId },
+        { headers: { token } }
+      );
       // console.log(response)
     }
   }
@@ -36,17 +40,23 @@ function StoreContextProvider({ children }) {
       [itemId]: prev[itemId] - 1,
     }));
 
-    if(token){
-      await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}}) 
+    if (token) {
+      await axios.post(
+        url + "/api/cart/remove",
+        { itemId },
+        { headers: { token } }
+      );
     }
   }
 
   async function loadCartData(token) {
-    const response = await axios.post(url+"/api/cart/get",{},{headers:{token}})
+    const response = await axios.post(
+      url + "/api/cart/get",
+      {},
+      { headers: { token } }
+    );
     // console.log("get:",response);
     setCartItems(response.data.cart);
-
-
   }
 
   function getTotalCartAmount() {
@@ -61,7 +71,7 @@ function StoreContextProvider({ children }) {
   }
 
   async function fetchFoodList() {
-    const response = await axios.get(url +"/api/food/list");
+    const response = await axios.get(url + "/api/food/list");
     // console.log(response);
     setFood_list(response.data.data);
   }

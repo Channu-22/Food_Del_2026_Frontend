@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const url = "http://localhost:4000";
+  const url = "https://food-del-2026-backend.onrender.com";
 
   return (
     <div>
@@ -21,9 +21,9 @@ function App() {
       <div className="app-content">
         <SideBar />
         <Routes>
-          <Route path="/add" element={<Add url={url}/>} />
-          <Route path="/list" element={<List url={url}/>} />
-          <Route path="/order" element={<Order url={url}/>} />
+          <Route path="/add" element={<Add url={url} />} />
+          <Route path="/list" element={<List url={url} />} />
+          <Route path="/order" element={<Order url={url} />} />
         </Routes>
       </div>
     </div>
