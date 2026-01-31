@@ -90,7 +90,7 @@ function NavBar({ setShowlogin }) {
         />
         <div className="navbar-search-icon relative  ">
           <Link to="/cart">
-            <img src={assets.basket_icon} alt="" className="" />
+            <img src={assets.basket_icon} alt="" className=""  title="Your Cart"/>
           </Link>
           <div
             className={`${
