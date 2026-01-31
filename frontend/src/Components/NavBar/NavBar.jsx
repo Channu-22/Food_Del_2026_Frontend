@@ -46,7 +46,7 @@ function NavBar({ setShowlogin }) {
               : " "
           } cursor-pointer  `}
         >
-          home
+          Home
         </Link>
         <a
           href="#explore-menu"
@@ -57,7 +57,7 @@ function NavBar({ setShowlogin }) {
               : " "
           } cursor-pointer  `}
         >
-          menu
+          Menu
         </a>
         <a
           href="#app-download"
@@ -68,7 +68,7 @@ function NavBar({ setShowlogin }) {
               : " "
           }  cursor-pointer `}
         >
-          mobile app
+          About
         </a>
         <a
           href="#footer"
@@ -79,14 +79,14 @@ function NavBar({ setShowlogin }) {
               : " "
           } cursor-pointer `}
         >
-          contact us
+          Contact Us
         </a>
       </ul>
       <div className="navbar-right flex items-center gap-10 max-[1050px]:gap-[30px] max-[875px]:gap-5">
         <img
           src={assets.search_icon}
           alt=""
-          className="max-[1050px]:w-[22px] max-[875px]:w-5"
+          className="max-[550px]:hidden max-[1050px]:w-[22px] max-[875px]:w-5"
         />
         <div className="navbar-search-icon relative  ">
           <Link to="/cart">
