@@ -71,7 +71,7 @@ function PlaceOrder() {
     <form
       onSubmit={placeOrder}
       action=""
-      className="place-order  flex items-start justify-between gap-[50px]"
+      className="place-order    flex flex-col md:flex-row items-start justify-between gap-[50px]"
     >
       <div className="place-order-left w-full max-w-[max(30%,500px)]">
         <p className="title text-[30px] font-semibold mb-[50px]">

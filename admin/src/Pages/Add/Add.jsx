@@ -53,6 +53,7 @@ function Add({url}) {
 
   return (
     <div className="add w-[70%] ml-[max(5vw,25px)] mt-12.5 text-[#6d6d6d] text-[16px]">
+       <p className="text-[26px] font-bold text-[#262626] text-center underline mb-8">Add Food</p>
       <form className="flex_col" action="" onSubmit={onSubmitHandler}>
         {/* Image Upload */}
         <div className="add-img-upload flex_col">

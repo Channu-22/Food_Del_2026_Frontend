@@ -4,37 +4,50 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-import { IndianRupee, Package, User, Phone, MapPin } from "lucide-react";
+import {
+  IndianRupee,
+  Package,
+  User,
+  Phone,
+  MapPin,
+  Loader2,
+} from "lucide-react";
 import { assets } from "../../assets/assets.js";
 
 function Order({ url }) {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  async function fetchAllOrders() {
-    const response = await axios.get(url + "/api/order/list");
-    if (response.data.success) {
-      setOrders(response.data.data);
-      console.log(response.data.data);
-      toast.success(response.data.message);
-    } else {
-      toast.error(response.data.message);
+  async function fetchAllOrders(silent = false) {
+    setLoading(true);
+    try {
+      const response = await axios.get(url + "/api/order/list");
+      if (response.data.success) {
+        setOrders(response.data.data);
+        if (!silent) toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (err) {
+      toast.error("Failed to fetch orders.");
+    } finally {
+      setLoading(false);
     }
   }
 
   async function statusHandler(event, orderId) {
-    // console.log(event,orderId)
     try {
       const response = await axios.post(url + "/api/order/status", {
         orderId,
         status: event.target.value,
       });
       if (response.data.success) {
-        await fetchAllOrders();
+        await fetchAllOrders(true);
         toast.success(response.data.message);
       }
     } catch (err) {
-      console.log(err)
-      toast.error(response.data.message);
+      console.log(err);
+      toast.error("Failed to update order status.");
     }
   }
 
@@ -44,16 +57,23 @@ function Order({ url }) {
 
   return (
     <div className="order add my-[50px] px-4 max-w-[1400px] mx-auto">
-      <div className="mb-8">
+      <div className="mb-8 text-center">
         <h3 className="text-[32px] font-bold text-[#262626] mb-2">
           Order Page
         </h3>
         <p className="text-[#676767] text-[15px]">Manage all customer orders</p>
       </div>
 
-      <div className="order-list flex flex-col gap-5">
-        {orders.map((order, index) => {
-          return (
+      {loading ? (
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <Loader2 className="w-40 h-40 text-orange-400 animate-spin stroke-1" />
+          <p className="text-lg font-medium text-gray-600 animate-pulse">
+            Loading Orders...
+          </p>
+        </div>
+      ) : (
+        <div className="order-list flex flex-col gap-5">
+          {orders.map((order, index) => (
             <div
               key={index}
               className="order-item bg-white hover:shadow-md transition-shadow duration-200 grid grid-cols-1 lg:grid-cols-[auto_2fr_auto_auto_auto] gap-4 lg:gap-6 items-start p-5 rounded-lg border border-[#e0e0e0]"
@@ -157,9 +177,9 @@ function Order({ url }) {
                 <option value="Delivered">Delivered</option>
               </select>
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
